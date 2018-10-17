@@ -28,6 +28,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "flow-bin": "^0.83.0",
     "gh-pages": "^2.0.1"
   }
 }

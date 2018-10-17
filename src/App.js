@@ -1,10 +1,21 @@
+/* @flow */
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { Component } from 'react';
 import bwipjs from 'bwip-js';
 
-class App extends Component {
-  constructor(props) {
+type Props = {};
+
+type State = {
+  activeBtn: string,
+  activeNumber: string,
+};
+
+class App extends Component<Props, State> {
+  _canvas: ?HTMLCanvasElement;
+
+  constructor(props: Props) {
     super(props);
     this.state = {
       activeBtn: 'BIN',
@@ -16,7 +27,7 @@ class App extends Component {
     this.genQrCode();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (
       this.state.activeBtn !== prevState.activeBtn ||
       this.state.activeNumber !== prevState.activeNumber
@@ -29,13 +40,13 @@ class App extends Component {
     return `${this.state.activeBtn}:${this.state.activeNumber}`;
   }
 
-  setActiveBtn(nextActiveBtn) {
+  setActiveBtn(nextActiveBtn: string) {
     this.setState({
       activeBtn: nextActiveBtn,
     });
   }
 
-  handleNumpadClick(num) {
+  handleNumpadClick(num: number) {
     this.setState({
       activeNumber: `${this.state.activeNumber}${num}`,
     });
