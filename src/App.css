@@ -6,7 +6,7 @@
 
 .cursor {
   animation: cursor-blink;
-  animation-duration: 2s;
+  animation-duration: 1.5s;
   animation-iteration-count: infinite;
   border-right: 2px solid #aaa;
   display: inline-block;
@@ -18,10 +18,14 @@
 
 @keyframes cursor-blink {
   0% {
+    border-right-color: #aaa;
+  }
+
+  50% {
     border-right-color: transparent;
   }
 
-  100% {
+  0% {
     border-right-color: #aaa;
   }
 }
