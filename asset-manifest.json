@@ -1,0 +1,15 @@
+{
+  "main.css": "/bar-gen/static/css/main.3dcc2bab.chunk.css",
+  "main.js": "/bar-gen/static/js/main.2b728494.chunk.js",
+  "main.js.map": "/bar-gen/static/js/main.2b728494.chunk.js.map",
+  "static/css/1.a0aaa6ae.chunk.css": "/bar-gen/static/css/1.a0aaa6ae.chunk.css",
+  "static/js/1.55de39db.chunk.js": "/bar-gen/static/js/1.55de39db.chunk.js",
+  "static/js/1.55de39db.chunk.js.map": "/bar-gen/static/js/1.55de39db.chunk.js.map",
+  "runtime~main.js": "/bar-gen/static/js/runtime~main.a1a234e6.js",
+  "runtime~main.js.map": "/bar-gen/static/js/runtime~main.a1a234e6.js.map",
+  "static/css/1.a0aaa6ae.chunk.css.map": "/bar-gen/static/css/1.a0aaa6ae.chunk.css.map",
+  "static/css/main.3dcc2bab.chunk.css.map": "/bar-gen/static/css/main.3dcc2bab.chunk.css.map",
+  "index.html": "/bar-gen/index.html",
+  "precache-manifest.eabdd5b2e208c58afbc2ea2ff399e8f0.js": "/bar-gen/precache-manifest.eabdd5b2e208c58afbc2ea2ff399e8f0.js",
+  "service-worker.js": "/bar-gen/service-worker.js"
+}
