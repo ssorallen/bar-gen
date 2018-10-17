@@ -6,17 +6,17 @@ Generates QRCodes in a quick little UI.
 
 1. Install dependencies
 
-    $ yarn install
+       $ yarn install
 2. Run the devserver
 
-    $ yarn start
+       $ yarn start
 3. Visit the app at localhost:9001
 
 ## Deploying
 
 1. Install dependencies
 
-    $ yarn install
+       $ yarn install
 2. Deploy
 
-    $ yarn deploy
+       $ yarn deploy
