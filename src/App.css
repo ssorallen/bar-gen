@@ -8,6 +8,10 @@
   border-radius: 15.5px;
 }
 
+.btn-rounded .form-check-input {
+  margin-top: 0.2rem;
+}
+
 .cursor {
   animation: cursor-blink;
   animation-duration: 1.5s;
