@@ -115,20 +115,20 @@ class App extends Component<Props, State> {
         <div className="row">
           <div className="col my-1">
             <button
-              className="btn btn-rounded btn-sm btn-danger px-4"
+              className="btn btn-rounded btn-sm btn-danger"
               disabled={this.state.activeBtn === 'BIN'}
               onClick={this.setActiveBtn.bind(this, 'BIN')}
               type="button">
               <div className="form-check">
                 <input
                   checked={this.state.activeBtn === 'BIN'}
-                  className="form-check-input"
+                  className="form-check-input mr-1"
                   id="resource-type-bin"
                   name="resource-type"
                   readOnly
                   type="radio"
                 />
-                <label className="form-check-label" htmlFor="resource-type-bin">
+                <label className="form-check-label pr-2" htmlFor="resource-type-bin">
                   BIN
                 </label>
               </div>
@@ -136,14 +136,14 @@ class App extends Component<Props, State> {
           </div>
           <div className="col my-1">
             <button
-              className="btn btn-rounded btn-sm btn-secondary px-3"
+              className="btn btn-rounded btn-sm btn-secondary"
               disabled={this.state.activeBtn === 'CASE'}
               onClick={this.setActiveBtn.bind(this, 'CASE')}
               type="button">
               <div className="form-check">
                 <input
                   checked={this.state.activeBtn === 'CASE'}
-                  className="form-check-input"
+                  className="form-check-input mr-1"
                   id="resource-type-case"
                   name="resource-type"
                   readOnly
@@ -157,14 +157,14 @@ class App extends Component<Props, State> {
           </div>
           <div className="col my-1">
             <button
-              className="btn btn-rounded btn-sm btn-primary px-3"
+              className="btn btn-rounded btn-sm btn-primary"
               disabled={this.state.activeBtn === 'TRAY'}
               onClick={this.setActiveBtn.bind(this, 'TRAY')}
               type="button">
               <div className="form-check">
                 <input
                   checked={this.state.activeBtn === 'TRAY'}
-                  className="form-check-input"
+                  className="form-check-input mr-1"
                   id="resource-type-tray"
                   name="resource-type"
                   readOnly
@@ -185,7 +185,7 @@ class App extends Component<Props, State> {
               <div className="form-check">
                 <input
                   checked={this.state.activeBtn === 'STATION'}
-                  className="form-check-input"
+                  className="form-check-input mr-1"
                   id="resource-type-station"
                   name="resource-type"
                   readOnly
@@ -206,7 +206,7 @@ class App extends Component<Props, State> {
               <div className="form-check">
                 <input
                   checked={this.state.activeBtn === 'CROP'}
-                  className="form-check-input"
+                  className="form-check-input mr-1"
                   id="resource-type-crop"
                   name="resource-type"
                   readOnly
