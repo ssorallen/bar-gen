@@ -1,7 +1,7 @@
 {
   "main.css": "/bar-gen/static/css/main.2d352c94.chunk.css",
-  "main.js": "/bar-gen/static/js/main.ac8d7155.chunk.js",
-  "main.js.map": "/bar-gen/static/js/main.ac8d7155.chunk.js.map",
+  "main.js": "/bar-gen/static/js/main.98481344.chunk.js",
+  "main.js.map": "/bar-gen/static/js/main.98481344.chunk.js.map",
   "static/css/1.a0aaa6ae.chunk.css": "/bar-gen/static/css/1.a0aaa6ae.chunk.css",
   "static/js/1.55de39db.chunk.js": "/bar-gen/static/js/1.55de39db.chunk.js",
   "static/js/1.55de39db.chunk.js.map": "/bar-gen/static/js/1.55de39db.chunk.js.map",
@@ -10,6 +10,6 @@
   "static/css/1.a0aaa6ae.chunk.css.map": "/bar-gen/static/css/1.a0aaa6ae.chunk.css.map",
   "static/css/main.2d352c94.chunk.css.map": "/bar-gen/static/css/main.2d352c94.chunk.css.map",
   "index.html": "/bar-gen/index.html",
-  "precache-manifest.4792a2a9d5c7836bd8aca2f4f8b63adc.js": "/bar-gen/precache-manifest.4792a2a9d5c7836bd8aca2f4f8b63adc.js",
+  "precache-manifest.f71d4efbea8d83a09eeb46b891066cee.js": "/bar-gen/precache-manifest.f71d4efbea8d83a09eeb46b891066cee.js",
   "service-worker.js": "/bar-gen/service-worker.js"
 }
