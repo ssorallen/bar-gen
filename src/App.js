@@ -94,16 +94,16 @@ class App extends Component<Props, State> {
             this._canvas = ref;
           }}
         />
-        <h4 className="mt-3">
-          <pre>
+        <h5 className="mt-2">
+          <pre className="mb-0">
             {this.getQrCodeText()}
             <span className="cursor" />
           </pre>
-        </h4>
+        </h5>
         <div className="row">
-          <div className="col my-2">
+          <div className="col my-1">
             <button
-              className="btn btn-rounded btn-danger px-4"
+              className="btn btn-rounded btn-sm btn-danger px-4"
               disabled={this.state.activeBtn === 'BIN'}
               onClick={this.setActiveBtn.bind(this, 'BIN')}
               type="button">
@@ -122,9 +122,9 @@ class App extends Component<Props, State> {
               </div>
             </button>
           </div>
-          <div className="col my-2">
+          <div className="col my-1">
             <button
-              className="btn btn-rounded btn-secondary px-3"
+              className="btn btn-rounded btn-sm btn-secondary px-3"
               disabled={this.state.activeBtn === 'CASE'}
               onClick={this.setActiveBtn.bind(this, 'CASE')}
               type="button">
@@ -143,9 +143,9 @@ class App extends Component<Props, State> {
               </div>
             </button>
           </div>
-          <div className="col my-2">
+          <div className="col my-1">
             <button
-              className="btn btn-rounded btn-primary px-3"
+              className="btn btn-rounded btn-sm btn-primary px-3"
               disabled={this.state.activeBtn === 'TRAY'}
               onClick={this.setActiveBtn.bind(this, 'TRAY')}
               type="button">
@@ -164,9 +164,9 @@ class App extends Component<Props, State> {
               </div>
             </button>
           </div>
-          <div className="col my-2">
+          <div className="col my-1">
             <button
-              className="btn btn-rounded btn-success"
+              className="btn btn-rounded btn-sm btn-success"
               disabled={this.state.activeBtn === 'STATION'}
               onClick={this.setActiveBtn.bind(this, 'STATION')}
               type="button">
@@ -185,9 +185,9 @@ class App extends Component<Props, State> {
               </div>
             </button>
           </div>
-          <div className="col my-2">
+          <div className="col my-1">
             <button
-              className="btn btn-rounded btn-warning"
+              className="btn btn-rounded btn-sm btn-warning"
               disabled={this.state.activeBtn === 'CROP'}
               onClick={this.setActiveBtn.bind(this, 'CROP')}
               type="button">
@@ -207,7 +207,7 @@ class App extends Component<Props, State> {
             </button>
           </div>
         </div>
-        <div className="mt-4 mx-auto" style={{ width: '240px' }}>
+        <div className="mt-3 mx-auto" style={{ width: '240px' }}>
           <div className="row">
             <div className="col">
               <button
