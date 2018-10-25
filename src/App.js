@@ -95,7 +95,6 @@ class App extends Component<Props, State> {
     if (!dt || dt > 500 || fingers > 1) return; // not double-tap
 
     e.preventDefault();
-    e.target.click();
   };
 
   render() {
