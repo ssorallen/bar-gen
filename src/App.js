@@ -85,18 +85,6 @@ class App extends Component<Props, State> {
     );
   }
 
-  preventZoom = e => {
-    const t2 = e.timeStamp;
-    const t1 = e.currentTarget.dataset.lastTouch || t2;
-    const dt = t2 - t1;
-    const fingers = e.touches.length;
-    e.currentTarget.dataset.lastTouch = t2;
-
-    if (!dt || dt > 500 || fingers > 1) return; // not double-tap
-
-    e.preventDefault();
-  };
-
   render() {
     return (
       <div className="container text-center" style={{ maxWidth: '540px' }}>
@@ -224,24 +212,21 @@ class App extends Component<Props, State> {
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 1)}
-                onTouchStart={this.preventZoom}>
+                onClick={this.handleNumpadClick.bind(this, 1)}>
                 1
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 2)}
-                onTouchStart={this.preventZoom}>
+                onClick={this.handleNumpadClick.bind(this, 2)}>
                 2
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 3)}
-                onTouchStart={this.preventZoom}>
+                onClick={this.handleNumpadClick.bind(this, 3)}>
                 3
               </button>
             </div>
@@ -250,24 +235,21 @@ class App extends Component<Props, State> {
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 4)}
-                onTouchStart={this.preventZoom}>
+                onClick={this.handleNumpadClick.bind(this, 4)}>
                 4
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 5)}
-                onTouchStart={this.preventZoom}>
+                onClick={this.handleNumpadClick.bind(this, 5)}>
                 5
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 6)}
-                onTouchStart={this.preventZoom}>
+                onClick={this.handleNumpadClick.bind(this, 6)}>
                 6
               </button>
             </div>
@@ -276,24 +258,21 @@ class App extends Component<Props, State> {
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 7)}
-                onTouchStart={this.preventZoom}>
+                onClick={this.handleNumpadClick.bind(this, 7)}>
                 7
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 8)}
-                onTouchStart={this.preventZoom}>
+                onClick={this.handleNumpadClick.bind(this, 8)}>
                 8
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 9)}
-                onTouchStart={this.preventZoom}>
+                onClick={this.handleNumpadClick.bind(this, 9)}>
                 9
               </button>
             </div>
@@ -303,8 +282,7 @@ class App extends Component<Props, State> {
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 0)}
-                onTouchStart={this.preventZoom}>
+                onClick={this.handleNumpadClick.bind(this, 0)}>
                 0
               </button>
             </div>
@@ -313,7 +291,6 @@ class App extends Component<Props, State> {
                 className="btn btn-dark btn-round btn-lg"
                 disabled={this.state.activeNumber === ''}
                 onClick={this.handleDeleteClick}
-                onTouchStart={this.preventZoom}
                 style={{ textIndent: '-3px' }}>
                 ⌫
               </button>
