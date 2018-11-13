@@ -14,6 +14,7 @@ type State = {
 
 class App extends Component<Props, State> {
   _canvas: ?HTMLCanvasElement;
+  _deleteTimeout: ?TimeoutID;
 
   constructor(props: Props) {
     super(props);
@@ -36,8 +37,46 @@ class App extends Component<Props, State> {
     }
   }
 
+  deleteCharacter() {
+    // Can't delete if there's no number.
+    if (this.state.activeNumber.length === 0) return '';
+    const nextActiveNumber = this.state.activeNumber.substr(0, this.state.activeNumber.length - 1);
+    this.setState({
+      activeNumber: nextActiveNumber,
+    });
+    return nextActiveNumber;
+  }
+
+  deleteRepeat = () => {
+    const nextActiveNumber = this.deleteCharacter();
+    if (nextActiveNumber.length === 0) return;
+    this._deleteTimeout = setTimeout(this.deleteRepeat, 50);
+  };
+
   getQrCodeText() {
     return `${this.state.activeBtn}:${this.state.activeNumber}`;
+  }
+
+  handleNumpadClick(num: number) {
+    this.setState({
+      activeNumber: `${this.state.activeNumber}${num}`,
+    });
+  }
+
+  handleDeleteClick = () => {
+    const nextActiveNumber = this.deleteCharacter();
+    if (nextActiveNumber.length === 0) return;
+    this._deleteTimeout = setTimeout(this.deleteRepeat, 600);
+  };
+
+  handleDeleteHoldEnd = () => {
+    this.killDeleteRepeat();
+  };
+
+  killDeleteRepeat() {
+    if (this._deleteTimeout == null) return;
+    clearTimeout(this._deleteTimeout);
+    this._deleteTimeout = null;
   }
 
   setActiveBtn(nextActiveBtn: string) {
@@ -48,20 +87,6 @@ class App extends Component<Props, State> {
       activeNumber: '',
     });
   }
-
-  handleNumpadClick(num: number) {
-    this.setState({
-      activeNumber: `${this.state.activeNumber}${num}`,
-    });
-  }
-
-  handleDeleteClick = () => {
-    // Can't delete if there's no number.
-    if (this.state.activeNumber.length === 0) return;
-    this.setState({
-      activeNumber: this.state.activeNumber.substr(0, this.state.activeNumber.length - 1),
-    });
-  };
 
   genQrCode() {
     bwipjs(
@@ -105,7 +130,7 @@ class App extends Component<Props, State> {
             <button
               className="btn btn-rounded btn-sm btn-danger"
               disabled={this.state.activeBtn === 'BIN'}
-              onClick={this.setActiveBtn.bind(this, 'BIN')}
+              onMouseDown={this.setActiveBtn.bind(this, 'BIN')}
               type="button">
               <div className="form-check">
                 <input
@@ -126,7 +151,7 @@ class App extends Component<Props, State> {
             <button
               className="btn btn-rounded btn-sm btn-secondary"
               disabled={this.state.activeBtn === 'CASE'}
-              onClick={this.setActiveBtn.bind(this, 'CASE')}
+              onMouseDown={this.setActiveBtn.bind(this, 'CASE')}
               type="button">
               <div className="form-check">
                 <input
@@ -147,7 +172,7 @@ class App extends Component<Props, State> {
             <button
               className="btn btn-rounded btn-sm btn-primary"
               disabled={this.state.activeBtn === 'TRAY'}
-              onClick={this.setActiveBtn.bind(this, 'TRAY')}
+              onMouseDown={this.setActiveBtn.bind(this, 'TRAY')}
               type="button">
               <div className="form-check">
                 <input
@@ -168,7 +193,7 @@ class App extends Component<Props, State> {
             <button
               className="btn btn-rounded btn-sm btn-success"
               disabled={this.state.activeBtn === 'STATION'}
-              onClick={this.setActiveBtn.bind(this, 'STATION')}
+              onMouseDown={this.setActiveBtn.bind(this, 'STATION')}
               type="button">
               <div className="form-check">
                 <input
@@ -189,7 +214,7 @@ class App extends Component<Props, State> {
             <button
               className="btn btn-rounded btn-sm btn-warning"
               disabled={this.state.activeBtn === 'CROP'}
-              onClick={this.setActiveBtn.bind(this, 'CROP')}
+              onMouseDown={this.setActiveBtn.bind(this, 'CROP')}
               type="button">
               <div className="form-check">
                 <input
@@ -212,21 +237,21 @@ class App extends Component<Props, State> {
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 1)}>
+                onMouseDown={this.handleNumpadClick.bind(this, 1)}>
                 1
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 2)}>
+                onMouseDown={this.handleNumpadClick.bind(this, 2)}>
                 2
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 3)}>
+                onMouseDown={this.handleNumpadClick.bind(this, 3)}>
                 3
               </button>
             </div>
@@ -235,21 +260,21 @@ class App extends Component<Props, State> {
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 4)}>
+                onMouseDown={this.handleNumpadClick.bind(this, 4)}>
                 4
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 5)}>
+                onMouseDown={this.handleNumpadClick.bind(this, 5)}>
                 5
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 6)}>
+                onMouseDown={this.handleNumpadClick.bind(this, 6)}>
                 6
               </button>
             </div>
@@ -258,21 +283,21 @@ class App extends Component<Props, State> {
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 7)}>
+                onMouseDown={this.handleNumpadClick.bind(this, 7)}>
                 7
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 8)}>
+                onMouseDown={this.handleNumpadClick.bind(this, 8)}>
                 8
               </button>
             </div>
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 9)}>
+                onMouseDown={this.handleNumpadClick.bind(this, 9)}>
                 9
               </button>
             </div>
@@ -282,7 +307,7 @@ class App extends Component<Props, State> {
             <div className="col">
               <button
                 className="btn btn-dark btn-round btn-lg"
-                onClick={this.handleNumpadClick.bind(this, 0)}>
+                onMouseDown={this.handleNumpadClick.bind(this, 0)}>
                 0
               </button>
             </div>
@@ -290,7 +315,9 @@ class App extends Component<Props, State> {
               <button
                 className="btn btn-dark btn-round btn-lg"
                 disabled={this.state.activeNumber === ''}
-                onClick={this.handleDeleteClick}
+                onMouseDown={this.handleDeleteClick}
+                onMouseOut={this.handleDeleteHoldEnd}
+                onMouseUp={this.handleDeleteHoldEnd}
                 style={{ textIndent: '-3px' }}>
                 ⌫
               </button>
