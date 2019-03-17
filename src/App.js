@@ -2,7 +2,8 @@
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import React, { Component } from 'react';
+import * as React from 'react';
+import ResourceButton from './ResourceButton';
 import bwipjs from 'bwip-js';
 
 type Props = {};
@@ -12,7 +13,7 @@ type State = {
   activeNumber: string,
 };
 
-class App extends Component<Props, State> {
+export default class App extends React.Component<Props, State> {
   _canvas: ?HTMLCanvasElement;
   _deleteTimeout: ?TimeoutID;
 
@@ -70,14 +71,10 @@ class App extends Component<Props, State> {
   };
 
   handleDeleteHoldEnd = () => {
-    this.killDeleteRepeat();
-  };
-
-  killDeleteRepeat() {
     if (this._deleteTimeout == null) return;
     clearTimeout(this._deleteTimeout);
     this._deleteTimeout = null;
-  }
+  };
 
   setActiveBtn(nextActiveBtn: string) {
     // Choosing a new type should also reset the number because there's little chance you want the
@@ -127,109 +124,49 @@ class App extends Component<Props, State> {
         </h5>
         <div className="row">
           <div className="col my-1">
-            <button
-              className="btn btn-rounded btn-sm btn-danger"
-              disabled={this.state.activeBtn === 'BIN'}
+            <ResourceButton
+              active={this.state.activeBtn === 'BIN'}
+              className="btn-danger"
               onMouseDown={this.setActiveBtn.bind(this, 'BIN')}
-              type="button">
-              <div className="form-check">
-                <input
-                  checked={this.state.activeBtn === 'BIN'}
-                  className="form-check-input mr-1"
-                  id="resource-type-bin"
-                  name="resource-type"
-                  readOnly
-                  type="radio"
-                />
-                <label className="form-check-label pr-2" htmlFor="resource-type-bin">
-                  BIN
-                </label>
-              </div>
-            </button>
+              type="BIN">
+              BIN
+            </ResourceButton>
           </div>
           <div className="col my-1">
-            <button
-              className="btn btn-rounded btn-sm btn-secondary"
-              disabled={this.state.activeBtn === 'CASE'}
+            <ResourceButton
+              active={this.state.activeBtn === 'CASE'}
+              className="btn-secondary"
               onMouseDown={this.setActiveBtn.bind(this, 'CASE')}
-              type="button">
-              <div className="form-check">
-                <input
-                  checked={this.state.activeBtn === 'CASE'}
-                  className="form-check-input mr-1"
-                  id="resource-type-case"
-                  name="resource-type"
-                  readOnly
-                  type="radio"
-                />
-                <label className="form-check-label" htmlFor="resource-type-case">
-                  CASE
-                </label>
-              </div>
-            </button>
+              type="CASE">
+              CASE
+            </ResourceButton>
           </div>
           <div className="col my-1">
-            <button
-              className="btn btn-rounded btn-sm btn-primary"
-              disabled={this.state.activeBtn === 'TRAY'}
+            <ResourceButton
+              active={this.state.activeBtn === 'TRAY'}
+              className="btn-primary"
               onMouseDown={this.setActiveBtn.bind(this, 'TRAY')}
-              type="button">
-              <div className="form-check">
-                <input
-                  checked={this.state.activeBtn === 'TRAY'}
-                  className="form-check-input mr-1"
-                  id="resource-type-tray"
-                  name="resource-type"
-                  readOnly
-                  type="radio"
-                />
-                <label className="form-check-label" htmlFor="resource-type-tray">
-                  TRAY
-                </label>
-              </div>
-            </button>
+              type="TRAY">
+              TRAY
+            </ResourceButton>
           </div>
           <div className="col my-1">
-            <button
-              className="btn btn-rounded btn-sm btn-success"
-              disabled={this.state.activeBtn === 'STATION'}
+            <ResourceButton
+              active={this.state.activeBtn === 'STATION'}
+              className="btn-success"
               onMouseDown={this.setActiveBtn.bind(this, 'STATION')}
-              type="button">
-              <div className="form-check">
-                <input
-                  checked={this.state.activeBtn === 'STATION'}
-                  className="form-check-input mr-1"
-                  id="resource-type-station"
-                  name="resource-type"
-                  readOnly
-                  type="radio"
-                />
-                <label className="form-check-label" htmlFor="resource-type-station">
-                  STATION
-                </label>
-              </div>
-            </button>
+              type="STATION">
+              STATION
+            </ResourceButton>
           </div>
           <div className="col my-1">
-            <button
-              className="btn btn-rounded btn-sm btn-warning"
-              disabled={this.state.activeBtn === 'CROP'}
+            <ResourceButton
+              active={this.state.activeBtn === 'CROP'}
+              className="btn-warning"
               onMouseDown={this.setActiveBtn.bind(this, 'CROP')}
-              type="button">
-              <div className="form-check">
-                <input
-                  checked={this.state.activeBtn === 'CROP'}
-                  className="form-check-input mr-1"
-                  id="resource-type-crop"
-                  name="resource-type"
-                  readOnly
-                  type="radio"
-                />
-                <label className="form-check-label" htmlFor="resource-type-crop">
-                  CROP
-                </label>
-              </div>
-            </button>
+              type="CROP">
+              CROP
+            </ResourceButton>
           </div>
         </div>
         <div className="mt-3 mx-auto" style={{ width: '240px' }}>
@@ -318,6 +255,8 @@ class App extends Component<Props, State> {
                 onMouseDown={this.handleDeleteClick}
                 onMouseOut={this.handleDeleteHoldEnd}
                 onMouseUp={this.handleDeleteHoldEnd}
+                onTouchEnd={this.handleDeleteHoldEnd}
+                onTouchStart={this.handleDeleteClick}
                 style={{ textIndent: '-3px' }}>
                 ⌫
               </button>
@@ -328,5 +267,3 @@ class App extends Component<Props, State> {
     );
   }
 }
-
-export default App;
