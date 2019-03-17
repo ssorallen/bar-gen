@@ -14,7 +14,8 @@ type State = {
 };
 
 export default class App extends React.Component<Props, State> {
-  _canvas: ?HTMLCanvasElement;
+  _canvasRef = React.createRef();
+  _deleteBtnRef = React.createRef();
   _deleteTimeout: ?TimeoutID;
 
   constructor(props: Props) {
@@ -30,6 +31,14 @@ export default class App extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
+    // Until React handles new Chrome functionality, `onTouchStart` must be bound to the real
+    // element in order for `preventDefault` to prevent clicks from firing.
+    //
+    // See: https://github.com/facebook/react/issues/9809#issuecomment-413978405
+    if (this._deleteBtnRef.current != null) {
+      this._deleteBtnRef.current.ontouchstart = this.handleDeleteTouchStart;
+    }
+
     if (
       this.state.activeBtn !== prevState.activeBtn ||
       this.state.activeNumber !== prevState.activeNumber
@@ -70,7 +79,7 @@ export default class App extends React.Component<Props, State> {
     this._deleteTimeout = setTimeout(this.deleteRepeat, 600);
   };
 
-  handleDeleteTouch = (event: SyntheticTouchEvent<HTMLElement>) => {
+  handleDeleteTouchStart = (event: SyntheticTouchEvent<HTMLElement>) => {
     event.preventDefault();
     this.handleDeleteClick();
   };
@@ -92,7 +101,7 @@ export default class App extends React.Component<Props, State> {
 
   genQrCode() {
     bwipjs(
-      this._canvas,
+      this._canvasRef.current,
       {
         bcid: 'qrcode', // Barcode type
         text: this.getQrCodeText(), // Text to encode
@@ -115,12 +124,7 @@ export default class App extends React.Component<Props, State> {
   render() {
     return (
       <div className="container text-center" style={{ maxWidth: '540px' }}>
-        <canvas
-          className="mt-3"
-          ref={ref => {
-            this._canvas = ref;
-          }}
-        />
+        <canvas className="mt-3" ref={this._canvasRef} />
         <h5 className="mt-2">
           <pre className="mb-0">
             {this.getQrCodeText()}
@@ -261,7 +265,7 @@ export default class App extends React.Component<Props, State> {
                 onMouseOut={this.handleDeleteHoldEnd}
                 onMouseUp={this.handleDeleteHoldEnd}
                 onTouchEnd={this.handleDeleteHoldEnd}
-                onTouchStart={this.handleDeleteTouch}
+                ref={this._deleteBtnRef}
                 style={{ textIndent: '-3px' }}>
                 ⌫
               </button>
