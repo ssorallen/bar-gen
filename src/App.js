@@ -70,6 +70,11 @@ export default class App extends React.Component<Props, State> {
     this._deleteTimeout = setTimeout(this.deleteRepeat, 600);
   };
 
+  handleDeleteTouch = (event: SyntheticTouchEvent<HTMLElement>) => {
+    event.preventDefault();
+    this.handleDeleteClick();
+  };
+
   handleDeleteHoldEnd = () => {
     if (this._deleteTimeout == null) return;
     clearTimeout(this._deleteTimeout);
@@ -256,7 +261,7 @@ export default class App extends React.Component<Props, State> {
                 onMouseOut={this.handleDeleteHoldEnd}
                 onMouseUp={this.handleDeleteHoldEnd}
                 onTouchEnd={this.handleDeleteHoldEnd}
-                onTouchStart={this.handleDeleteClick}
+                onTouchStart={this.handleDeleteTouch}
                 style={{ textIndent: '-3px' }}>
                 ⌫
               </button>
