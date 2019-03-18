@@ -14,8 +14,8 @@ type State = {
 };
 
 export default class App extends React.Component<Props, State> {
-  _canvasRef = React.createRef();
-  _deleteBtnRef = React.createRef();
+  _canvasRef = React.createRef<HTMLCanvasElement>();
+  _deleteBtnRef = React.createRef<HTMLButtonElement>();
   _deleteTimeout: ?TimeoutID;
 
   constructor(props: Props) {
@@ -36,6 +36,7 @@ export default class App extends React.Component<Props, State> {
     //
     // See: https://github.com/facebook/react/issues/9809#issuecomment-413978405
     if (this._deleteBtnRef.current != null) {
+      // $FlowFixMe: Where is `ontouchstart`?
       this._deleteBtnRef.current.ontouchstart = this.handleDeleteTouchStart;
     }
 
